@@ -4,35 +4,60 @@ header {
   height: 54px;
 }
 
-header ul {
-  margin: 0 auto;
-  list-style: none;
+// ナビゲーションバーここから
+.navbar-default {
+    border: 0;
 }
-
-header ul a {
-  display: block;
-  padding: 15px;
-  text-decoration: none;
-  color: white;
+.navbar {
+    background-color: transparent;
+    color: white;
+    margin-bottom: 0px;
 }
-
-header li {
-  float: left;
-  width: auto;
+.navbar-default {
+  .navbar-brand {
+    color: #ccc;
+    &:hover {
+      color: white;
+    }
+  }
+  .navbar-nav > li > a {
+    color: #ccc;
+    &:hover, &:focus {
+      color: white;
+    }
+  }
+  .navbar-nav > .open > a {
+    background-color: transparent;
+    color: white;
+    &:hover, &:focus {
+      background-color: transparent;
+      color: white;
+    }
+  }
 }
-
-header ul:after {
-  content: "";
-  display: block;
-  clear: both;
+@media (max-width: 767px) {
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ccc;
+    text-align: center;
+    &:hover, &:focus {
+      color: white;
+    }
+  }
+  .navbar-default .navbar-toggle {
+    background-color: transparent;
+    &:hover, &:focus {
+      background-color: transparent;
+    }
+  }
 }
+// ナビゲーションバーここまで
 
+// topのメインヘッダー
 .main-header {
-  padding-bottom: 15%;
+  // padding-bottom: 15%;
   width: 100%;
-  background-size: cover;
-  background-image: url("images-master/header.jpg");
-  background-attachment: fixed;
+  // background-size: cover;　//背景画像のサイズを指定する。coverを指定をした場合、画像の幅と高さの比率は固定されたまま、背景の表示領域を覆うように表示されます。
+  // background-attachment: fixed;  //画面をスクロールする際、 背景画像をその位置に固定されたままにするか、スクロールに伴って移動するかどうかを指定します。
 }
 
 .main-header img {
@@ -85,4 +110,39 @@ html {
 
 body {
   text-align: center;
+}
+
+// トップにいくボタン
+.page-top-btn {
+  display: none;   //displayプロパティは表示形式を指定する。blockにすると縦に積まれる？
+  border-radius: 50px;    //ボックスの4つのコーナーの角丸を指定
+  background: #336699;
+  width: 60px;    //ボックスの幅
+  height: 60px;   //ボックスの高さ
+  transition: all 0.3s; //フェードアウトの時間
+  cursor: pointer;
+
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  z-index: 20;
+
+  &:hover {
+    opacity: 0.7; //フェードアウト量 0だと完全に消える
+  }
+
+  a {
+    display: block;
+    color: white;
+    line-height: 60px;
+    text-decoration: none;
+  }
+
+
+}
+
+// falshメッセージのデザイン
+.flash {
+  // color: white;
+  padding-top: 10px;
 }

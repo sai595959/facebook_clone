@@ -1,4 +1,8 @@
 class TopicsController < ApplicationController
+  # アクションを実行する前に、ログインしているかをチェック、してない場合はログイン画面に移動する
+  before_action :authenticate_user!
+
+  # 定義したメソッドを指定したアクションの前に実行する
   before_action :set_topic, only: [:edit, :update, :destroy]
 
   def index
@@ -15,6 +19,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topics_params)
+    @topic.user_id = current_user.id
     if @topic.save
       redirect_to topics_path, notice: "投稿しました！"
     else

@@ -5,7 +5,7 @@
     <h2><%= @topic.errors.count %>件のエラーがあります。</h2>
 
     <ul>
-    <!-- @blog.errorsは@blogをバリデーションした際のエラー情報です。
+    <!-- @topic.errorsは@topicをバリデーションした際のエラー情報です。
     full_messagesは複数のエラーメッセージを表します。 -->
       <% @topic.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
