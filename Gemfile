@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 group :development do
   gem 'letter_opener_web'
+  gem 'dotenv-rails'
 end
 
 group :development, :test do
@@ -55,3 +56,16 @@ end
   gem 'jquery-turbolinks'
 
   gem 'rails_12factor', group: :production
+
+# 管理系
+  gem 'rails_admin'
+  gem 'cancan'
+
+# omniauth
+  gem 'omniauth'
+  gem 'omniauth-twitter'
+  gem 'omniauth-facebook'
+
+# 画像アップローダー
+  gem 'carrierwave'
+  gem 'rmagick'

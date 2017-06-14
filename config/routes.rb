@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  devise_for :users
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users, controllers: {
+    registrations: "users/registrations",
+    omniauth_callbacks: "users/omniauth_callbacks"
+  }
   resources :topics, only: [:index, :new, :create, :edit, :update ,:destroy, :show] do
     collection do #collectionはidを含まないルーティング、memberはidを含んだルーティング定義
       post :confirm

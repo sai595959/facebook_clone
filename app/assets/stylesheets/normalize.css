@@ -460,3 +460,8 @@ template {
 [hidden] {
   display: none;
 }
+
+/* 画像が大きく表示されないようにする */
+img{
+  max-width: 100%;
+}
