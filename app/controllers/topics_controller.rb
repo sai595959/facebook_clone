@@ -3,7 +3,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!
 
   # 定義したメソッドを指定したアクションの前に実行する
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :set_topic, only: [:edit, :update, :destroy, :show]
 
   def index
     @topics = Topic.all
@@ -37,6 +37,8 @@ class TopicsController < ApplicationController
   end
 
   def show
+    @comment = @topic.comments.build
+    @comments = @topic.comments
   end
 
   def update
