@@ -1,0 +1,14 @@
+<div id="follow_form_<%= user.id %>">
+  <!-- Ajaxで動的にボタン切り替えをするためユーザごとのIDで”誰をフォローするボタンなのか”を識別する必要がある -->
+  <% unless current_user.following?(user) %>
+  <!-- following?はモデル内でメソッドを定義 -->
+    <%= form_for(current_user.relationships.build(followed_id: user.id), remote: true) do |f| %>
+      <%= f.hidden_field :followed_id %>
+      <%= f.submit "フォロー", class: "btn btn-large btn-primary" %>
+    <% end %>
+  <% else %>
+    <%= form_for(current_user.relationships.find_by(followed_id: user.id), html: { method: :delete }, remote: true) do |f| %>
+      <%= f.submit "つながりを解除", class: "btn btn-large" %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,20 @@
+<div class="container">
+  <h2><%= @user.name %>がフォローしているユーザー</h2>
+
+  <% if @followed.blank? %>
+    <p><%= @user.name %>がフォローしているユーザはいません</p>
+  <% else %>
+    <% @followed.each do |followed| %>
+      <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
+        <%= profile_img(followed,'user_index') %><br/>
+        <%= followed.name %><br/>
+        <%= link_to "詳細", user_path(followed.id), class: 'btn btn-default btn-sm btn-success' %><br/>
+        <% if current_user.id != followed.id %>
+          <%= render 'follow_form', user: followed %>
+          <% else %>
+          <% end %>
+      </div>
+    <% end %>
+  <% end %>
+
+</div>
