@@ -6,9 +6,8 @@
   <% else %>
     <% @followed.each do |followed| %>
       <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
-        <%= profile_img(followed,'user_index') %><br/>
-        <%= followed.name %><br/>
-        <%= link_to "詳細", user_path(followed.id), class: 'btn btn-default btn-sm btn-success' %><br/>
+        <%= profile_img(followed,:user_index) %><br/>
+        <%= link_to followed.name, user_path(followed.id) %><br/>
         <% if current_user.id != followed.id %>
           <%= render 'follow_form', user: followed %>
           <% else %>

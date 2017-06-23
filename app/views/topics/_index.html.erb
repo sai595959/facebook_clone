@@ -1,17 +1,23 @@
 <div class="container topic_index">
   <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
       <p class="flash"><%= notice %><%= alert %></p>
-      <h1>投稿一覧</h1>
-      <%= link_to "投稿する", new_topic_path, class: 'btn btn-default'%>
+
+      <div class = "row center">
+        <%= link_to "投稿する", new_topic_path, class: 'btn btn-default'%>
+      </div>
       <% @topics.reverse_each do |topic|%>
         <div class="row each_topic">
-          <p>投稿者：<%= User.find(topic.user_id).name %> <%= profile_img(User.find(topic.user_id),'topic') %></p>
-          <p>投稿：<%= topic.content%></p>
+          <p><%= profile_img(User.find(topic.user_id),'topic') %>     <%=link_to User.find(topic.user_id).name, topic.user %> </p>
+          <small><%= topic.created_at.strftime("%y/%m/%d %p %l:%M") %></small>
+          <p><%= topic.content%></p>
           <div class="btn_topic">
-            <%= link_to "詳細", topic_path(topic), class: 'btn btn-default btn-sm btn-success' %>
-            <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
-            <%= link_to "削除", topic_path(topic.id), method: :delete, data: {confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
-          </div>
+            <%= link_to "詳細", topic_path(topic), class: 'btn btn-primary btn-sm' %>
+            <% if topic.user_id==current_user.id %>
+              <%= link_to "編集", edit_topic_path(topic.id), class: 'btn btn-default btn-sm btn-success' %>
+              <%= link_to "削除", topic_path(topic.id), method: :delete, data: {confirm: '本当に削除していいですか？'}, class: 'btn btn-default btn-sm btn btn-danger' %>
+            <% end %>
+
+                      </div>
         </div>
       <% end %>
   </div>

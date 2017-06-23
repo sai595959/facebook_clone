@@ -5,6 +5,27 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+  <script src="https://js.pusher.com/4.0/pusher.min.js"></script>
+
+<!-- push通知 -->
+<% if user_signed_in? %>
+  <script>
+    var pusher = new Pusher('<%= ENV["PUSHER_KEY"] %>',{
+      encrypted: true
+      cluster: 'ap1',
+    });
+
+    var channel = pusher.subscribe("user_<%= current_user.id %>_channel");
+    channel.bind('comment_created', function(data) {
+      alert(data.message);
+    });
+    channel.bind('notification_created', function(data) {
+      $('#unread_count').html(data.unread_counts);
+    });
+  </script>
+<% end %>
+  <!-- push通知 -->
 </head>
 <body>
   <header>
@@ -18,23 +39,54 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <%= link_to "facebook_clone", root_path, class: "navbar-brand" %>
+          <%= link_to  image_tag(asset_path "FB-f-Logo__white_50.png", alt: "fb_logo"), root_path, class: "navbar-brand fb_logo" %>
+
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
+
+                <% if user_signed_in? %>
+              <li class='header_profile_li'>
+                  <%= link_to(edit_user_registration_path, class: 'aaa') do %>
+                    <%= User.find(current_user.id).name %> <%= profile_img(User.find(current_user.id),'header') %>
+                  <% end %>
+              </li>
+              <li><%= link_to "ホーム", root_path %></li>
+              <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
+              <li><%= link_to "メッセージ", conversations_path %></li>
+              <!-- 通知 -->
+              <li>
+                <%= link_to  notifications_index_path do %>
+                  <i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i>
+                <% end %>
+              </li>
+
+
+
+
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></a>
+
+
+
+
               <ul class="dropdown-menu">
                 <li><%= link_to "投稿一覧", topics_path %></li>
                 <li><%= link_to "投稿する", new_topic_path %></li>
-                <li><%= link_to 'ユーザー一覧', users_path if user_signed_in? %></li>
+                <% if user_signed_in? %>
+                  <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+                <% end %>
               </ul>
             </li>
 
+<% end %>
+
+            <!-- <%= link_to  notifications_index_path, class: "navbar-brand" do %>
+              <i class="fa fa-bell fa-1x"><span id="unread_count"><%= @notifications_count %></span></i>
+            <% end %> -->
+
             <% if user_signed_in? %>
-              <li><%= link_to 'マイページ', edit_user_registration_path %></li>
-              <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'ログイン', new_user_session_path %></li>
               <li><%= link_to 'サインアップ', new_user_registration_path %></li>

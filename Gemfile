@@ -69,3 +69,6 @@ end
 # 画像アップローダー
   gem 'carrierwave'
   gem 'rmagick'
+
+# 通知
+  gem 'pusher'

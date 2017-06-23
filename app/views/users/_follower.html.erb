@@ -7,10 +7,8 @@
 
     <% @follower.each do |follower| %>
         <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
-          <%= profile_img(follower,'user_index') %><br/>
-          <%= follower.name %><br/>
-          <%= link_to "詳細", user_path(follower.id), class: 'btn btn-default btn-sm btn-success' %><br/>
-
+          <%= profile_img(follower,:user_index) %><br/>
+          <%= link_to follower.name, user_path(follower.id) %><br/>
           <% if current_user.id != follower.id %>
             <%= render 'follow_form', user: follower %>
             <% else %>

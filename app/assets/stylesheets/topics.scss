@@ -4,13 +4,13 @@
 
 
 
-  .row {
-      border-bottom: 1px solid #ccc;
-      padding: 20px;
-      text-align: left;
-      word-wrap: break-word;
 
-    }
+    .row.center {
+        padding: 20px;
+        text-align: center;
+        word-wrap: break-word;
+
+      }
   }
 
   .profile_edit{
@@ -28,10 +28,10 @@
 .topic_index{
   .each_topic {
 
-      border-top: 1px solid #ccc;
-      border-bottom: 1px solid #ccc;
+      border: 1px solid #ccc;
 
-      margin-bottom: -1px;
+      margin-top: 10px;
+      margin-bottom: 10px;
       padding: 20px;
       text-align: left;
       word-wrap: break-word;
@@ -43,7 +43,10 @@
   }
 
   .topic_profile_img{
-    border-radius: 50px;
+
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
   }
 
 

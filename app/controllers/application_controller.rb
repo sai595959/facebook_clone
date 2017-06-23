@@ -17,4 +17,11 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: PERMISSIBLE_ATTRIBUTES)
   end
 
+  # pusher
+  before_action :current_notifications, if: :signed_in?
+
+  def current_notifications
+    @notifications_count = Notification.where(user_id: current_user.id).where(read: false).count
+  end
+
 end

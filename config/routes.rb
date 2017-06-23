@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'notifications/index'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -24,5 +26,10 @@ Rails.application.routes.draw do
 
   # フォローフォロワーかんけい
   resources :relationships, only: [:create, :destroy]
+
+  # メッセージ機能
+  resources :conversations do
+    resources :messages
+  end
 
 end
