@@ -37,6 +37,8 @@ group :development do
   gem 'dotenv-rails'
 end
 
+  gem 'therubyracer', platforms: :ruby
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -46,6 +48,15 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  gem 'pry-rails'
+  gem 'better_errors'
+
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 
@@ -75,3 +86,5 @@ end
 
 
   gem 'fog'
+  gem 'dotenv-rails'
+  gem 'unicorn'
