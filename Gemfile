@@ -72,3 +72,6 @@ end
 
 # 通知
   gem 'pusher'
+
+
+  gem 'fog'
