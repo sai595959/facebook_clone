@@ -57,7 +57,7 @@ class TopicsController < ApplicationController
 
   private
     def topics_params #ストロングパラメータで取得するパラメータを制限する。悪意のあるデータは取得しないように。
-      params.require(:topic).permit(:content)
+      params.require(:topic).permit(:content, :photo, :photo_cache)
     end
     # privateで定義するのは、他のコントローラ等からメソッドを読み込めないようにするため。
     # blogs_controllerで定義したblogs_paramsをcontacts_controllerで呼び出せてしまうと、contacts_controllerで意図していないパラメータを受け取ることができてしまいます。

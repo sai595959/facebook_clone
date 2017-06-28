@@ -5,7 +5,10 @@
     <%= form_for(@topic) do |f| %>
     <!-- `f.hidden_field`を使用して、リクエストパラメータに値を設定できるようにしています。 -->
       <%= f.hidden_field :content %>
+      <%= f.hidden_field :photo %>
+      <%= f.hidden_field :photo_cache %>
 
+      <p><%= confirm_photo(@topic) %></p>
       <p>投稿内容：<%= @topic.content %></p>
       <%= f.submit "投稿",class: 'btn btn-primary btn-block' %>
     <% end %>
@@ -14,6 +17,8 @@
     <!-- 投稿を内容が消えないように渡している -->
     <%= form_for(@topic, url: new_topic_path, method: 'get') do |f| %>
       <%= f.hidden_field :content %>
+      <%= f.hidden_field :photo %>
+      <%= f.hidden_field :photo_cache %>
       <%= f.submit "もどる", name: 'back', class: 'btn btn-default btn-block'  %>
     <% end %>
   </div>

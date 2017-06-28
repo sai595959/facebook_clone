@@ -17,6 +17,8 @@
 
   <%= f.label "投稿内容" %>
   <%= f.text_field :content, class:  'form-control' %>
+  <%= f.label "photo" %>
+  <%= f.file_field :photo, class: 'photo_up' %>
   <br>
   <%= f.submit "投稿", class: 'btn btn-primary btn-block'%>
 <% end %>
