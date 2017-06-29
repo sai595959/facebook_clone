@@ -6,7 +6,7 @@
   <% else %>
 
     <% @follower.each do |follower| %>
-        <div class="container-child col-md-2 col-sm-4 col-xs-6 ">
+        <div class="container-child col-md-2 col-sm-4 col-xs-6 row-eq-height">
           <%= profile_img(follower,:user_index) %><br/>
           <%= link_to follower.name, user_path(follower.id) %><br/>
           <% if current_user.id != follower.id %>

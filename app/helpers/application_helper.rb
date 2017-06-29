@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def post_photo(topic)
+  def topic_photo(topic)
     image_tag(topic.photo, class: 'photo_index')
   end
 

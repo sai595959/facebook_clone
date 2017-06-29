@@ -78,7 +78,7 @@ end
   gem 'omniauth-facebook'
 
 # 画像アップローダー
-  gem 'carrierwave'
+  gem 'carrierwave',github: 'carrierwaveuploader/carrierwave'
   gem 'rmagick'
   gem 'mini_magick'
 
@@ -89,3 +89,6 @@ end
   gem 'fog'
   gem 'dotenv-rails'
   gem 'unicorn'
+
+  # シードデータ
+  gem 'faker'
