@@ -2,7 +2,9 @@ class Conversation < ActiveRecord::Base
   belongs_to :sender, foreign_key: :sender_id, class_name: 'User'
   belongs_to :recipient, foreign_key: :recipient_id, class_name: 'User'
 
-  has_many :messages, dependent: :destroy
+
+  has_many :messages, dependent: :delete_all
+
 
   validates_uniqueness_of :sender_id, scope: :recipient_id
 
@@ -17,5 +19,5 @@ class Conversation < ActiveRecord::Base
       User.find(sender_id)
     end
   end
-  
+
 end

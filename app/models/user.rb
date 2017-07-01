@@ -15,6 +15,14 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :relationships, source: :followed
   has_many :followers, through: :reverse_relationships, source: :follower
 
+  # has_many :conversations, dependent: :destroy
+  has_many :messages, dependent: :delete_all
+
+  has_many :conversations_senders, foreign_key: "sender_id", class_name: "Conversation", dependent: :destroy
+  has_many :conversations_senders_2, foreign_key: "recipient_id", class_name: "Conversation", dependent: :destroy
+
+
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.find_by(email: auth.info.email)
 
