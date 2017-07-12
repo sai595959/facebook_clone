@@ -1,9 +1,10 @@
 10.times do |n|
-  name  = Faker::Name.name
+  name = Faker::LordOfTheRings.character
   email = Faker::Internet.email
-  password = "password"
+  password = Faker::Internet.password
   uid = SecureRandom.uuid
   User.create!(
+              id: n,
               name: name,
               email: email,
                password: password,
