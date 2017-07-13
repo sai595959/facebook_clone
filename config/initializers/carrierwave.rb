@@ -13,8 +13,8 @@ CarrierWave.configure do |config|
 
   case Rails.env
     when 'production'
-      config.fog_directory = 'facebook-clone-production-gokyu'
-      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/facebook-clone-production-gokyu'
+      config.fog_directory = 'fbc-p-gokyu'
+      config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/fbc-p-gokyu'
     when 'development'
       config.fog_directory = 'facebook-development-gokyu'
       config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/facebook-development-gokyu'
