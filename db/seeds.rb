@@ -4,7 +4,6 @@ email = Faker::Internet.email
 password = Faker::Internet.password
 uid = SecureRandom.uuid
 User.create(
-id: n,
 name: name,
 email: email,
 password: password,
