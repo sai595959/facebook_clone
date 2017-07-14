@@ -3,7 +3,7 @@
   <% @notifications.each do |notification| %>
   <hr>
     <li>
-      <span><%= notification.read %></span>
+      <span><%= notification_read(notification)%></span>
       <p>
         <%= notification.comment.user.try(:name) %>さんが
         あなたの投稿（<%= link_to "#{notification.comment.topic.content}", topic_path(notification.comment.topic, notification_id: notification.id) %>）にコメントしました。
