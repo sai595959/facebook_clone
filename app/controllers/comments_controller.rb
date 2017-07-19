@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
           @comment = Comment.find(params[:id])
           @topic = @comment.topic
 
-          if @topic.user_id == current_user.id
+          if @comment.user_id == current_user.id
           else
             redirect_to topic_path(@comment.topic_id), notice: "編集できません！"
           end
