@@ -29,6 +29,8 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(message_params) #HTTPリクエスト上のパラメータを利用してメッセージを作成
     if @message.save
       redirect_to conversation_messages_path(@conversation)
+    else
+      redirect_to conversation_messages_path(@conversation)
     end
   end
 

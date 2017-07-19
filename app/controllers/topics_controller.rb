@@ -33,7 +33,11 @@ class TopicsController < ApplicationController
   end
 
   def edit
-
+    # 投稿者だけが編集できるように
+    if @topic.user_id == current_user.id
+    else
+      redirect_to topics_path, notice: "編集できません！"
+    end
   end
 
   def show
